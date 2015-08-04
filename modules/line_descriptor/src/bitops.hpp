@@ -46,8 +46,13 @@
 #include "precomp.hpp"
 
 #ifdef _WIN32
+#ifdef MINGW
+# include <x86intrin.h>
+# define popcnt __builtin_popcount
+#else
 # include <intrin.h>
 # define popcnt __popcnt
+#endif
 # pragma warning( disable : 4267 )
 #else
 # define popcnt __builtin_popcount
