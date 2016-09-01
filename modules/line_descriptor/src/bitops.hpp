@@ -45,11 +45,15 @@
 
 #include "precomp.hpp"
 
+<<<<<<< HEAD
 #ifdef _WIN32
 #ifdef MINGW
 # include <x86intrin.h>
 # define popcnt __builtin_popcount
 #else
+=======
+#ifdef _MSC_VER
+>>>>>>> upstream/master
 # include <intrin.h>
 # define popcnt __popcnt
 #endif
