@@ -54,6 +54,12 @@ namespace protobuf {
 namespace io {
 
 #ifdef _WIN32
+#ifdef MINGW 
+#ifdef off_t
+#undef off_t
+#endif
+#define off_t int
+#endif    
 // Win32 lseek is broken:  If invoked on a non-seekable file descriptor, its
 // return value is undefined.  We re-define it to always produce an error.
 #define lseek(fd, offset, origin) ((off_t)-1)
