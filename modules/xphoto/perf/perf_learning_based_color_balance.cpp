@@ -11,7 +11,7 @@
 *  Redistribution and use in source and binary forms, with or without modification,
 *  are permitted provided that the following conditions are met :
 *
-*  *Redistributions of source code must retain the above copyright notice,
+*  * Redistributions of source code must retain the above copyright notice,
 *  this list of conditions and the following disclaimer.
 *
 *  * Redistributions in binary form must reproduce the above copyright notice,
@@ -64,7 +64,7 @@ PERF_TEST_P(learningBasedWBPerfTest, perf, Combine(SZ_ALL_HD, Values(CV_8UC3, CV
     Mat src_dscl(Size(size.width / 16, size.height / 16), t);
     RNG rng(1234);
     rng.fill(src_dscl, RNG::UNIFORM, 0, range_max_val);
-    resize(src_dscl, src, src.size());
+    resize(src_dscl, src, src.size(), 0, 0, INTER_LINEAR_EXACT);
     Ptr<xphoto::LearningBasedWB> wb = xphoto::createLearningBasedWB();
     wb->setRangeMaxVal(range_max_val);
     wb->setSaturationThreshold(0.98f);
