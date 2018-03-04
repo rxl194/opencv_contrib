@@ -11,7 +11,7 @@
  *  Redistribution and use in source and binary forms, with or without modification,
  *  are permitted provided that the following conditions are met :
  *
- *  *Redistributions of source code must retain the above copyright notice,
+ *  * Redistributions of source code must retain the above copyright notice,
  *  this list of conditions and the following disclaimer.
  *
  *  * Redistributions in binary form must reproduce the above copyright notice,
@@ -86,12 +86,12 @@ void MakeArtificialExample(Mat &dst_frame1, Mat &dst_frame2)
     int OF_scale = 6;
     double sigma = dst_frame1.cols / 300;
 
-    Mat tmp(Size(dst_frame1.cols / (int)pow(2, src_scale), dst_frame1.rows / (int)pow(2, src_scale)), CV_8U);
+    Mat tmp(Size(dst_frame1.cols / (1 << src_scale), dst_frame1.rows / (1 << src_scale)), CV_8U);
     randu(tmp, 0, 255);
-    resize(tmp, dst_frame1, dst_frame1.size(), 0.0, 0.0, INTER_LINEAR);
-    resize(tmp, dst_frame2, dst_frame2.size(), 0.0, 0.0, INTER_LINEAR);
+    resize(tmp, dst_frame1, dst_frame1.size(), 0.0, 0.0, INTER_LINEAR_EXACT);
+    resize(tmp, dst_frame2, dst_frame2.size(), 0.0, 0.0, INTER_LINEAR_EXACT);
 
-    Mat displacement_field(Size(dst_frame1.cols / (int)pow(2, OF_scale), dst_frame1.rows / (int)pow(2, OF_scale)),
+    Mat displacement_field(Size(dst_frame1.cols / (1 << OF_scale), dst_frame1.rows / (1 << OF_scale)),
                            CV_32FC2);
     randn(displacement_field, 0.0, sigma);
     resize(displacement_field, displacement_field, dst_frame2.size(), 0.0, 0.0, INTER_CUBIC);
